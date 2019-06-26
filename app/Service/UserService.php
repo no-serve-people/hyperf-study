@@ -20,14 +20,14 @@ class UserService
     {
         // 我们假设存在 User 这个实体
         $user = new User();
-        $user->id = 1;
+//        $user->id = 2;
         $user->name = "张三";
         $user->gender = "男";
-        //$result = $user->save();
+        $result = $user->save();
         // 完成账号注册的逻辑
         // 这里 dispatch(object $event) 会逐个运行监听该事件的监听器
         $this->eventDispatcher->dispatch(new UserRegistered($user));
-        return true;
+        return $result;
     }
 
     public function getInfoById(int $id): array

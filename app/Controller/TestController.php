@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\User;
 use App\Service\TokenService;
 use App\Service\UserService;
 use Hyperf\Di\Annotation\Inject;
@@ -77,6 +78,15 @@ class TestController extends Controller
         return $this->response->json([
             "token" => $c_token
         ]);
+    }
+
+    /**
+     * @GetMapping("dbTest")
+     */
+    public function dbTest()
+    {
+        $data = User::query()->where('id', 1)->first();
+        return json_encode($data);
     }
 
     /**
