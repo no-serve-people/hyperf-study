@@ -13,3 +13,5 @@ declare(strict_types=1);
 use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+Router::get('/test3', 'App\Controller\IndexController@test3', ['middleware' => [\App\Middleware\ThirdApiCheck::class]]);
+

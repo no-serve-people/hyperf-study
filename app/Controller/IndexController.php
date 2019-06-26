@@ -55,4 +55,11 @@ class IndexController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function test3()
+    {
+        return [
+            'data' => 1
+        ];
+    }
 }
