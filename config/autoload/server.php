@@ -44,5 +44,6 @@ return [
     ],
     'jwt-setting' => [
         'key' => env('JWT_KEY', 'xpnaYVqVVDwFfy8A'),
+        'jwtIss' => env('jwtIss', 'xpnaYVqVVDwFfy8A'),
     ]
 ];

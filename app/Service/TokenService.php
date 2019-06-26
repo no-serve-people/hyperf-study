@@ -11,28 +11,17 @@ class TokenService
 {
     public function authorizations(RequestInterface $request)
     {
-        $key = config('server.jwt-setting.key','xpnaYVqVVDwFfy8A'); //key
-        $time = time(); //当前时间
-        //公用信息
+        $key = config('server.jwt-setting.key', 'xpnaYVqVVDwFfy8A'); //key
+        $time = time();
         $token = [
-            'iss'  => 'xxx.com', //签发者 可选
-            'iat'  => $time, //签发时间
-            'data' => [ //自定义信息，不要定义敏感信息
-                'userid' => 1,
-            ]
+            'iss'  => config('server.jwt-setting.jwtIss', 'chachadian.com'),     // 签发者（可选）
+            'aud'  => config('server.jwt-setting.jwtAud', 'chachadian.com'),     // 接收方（可选）
+            'iat'  => $time,                             // 签发时间
+            'nbf'  => $time,                             // 某个时间点后才能访问
+            'exp'  => $time + 7 * 24 * 60 * 60,          // 过期时间
+            'data' => $request->all()                             // 自定义信息
         ];
-        $access_token = $token;
-        $access_token['scopes'] = 'role_access'; //token标识，请求接口的token
-        $access_token['exp'] = $time + 7200; //access_token过期时间,这里设置2个小时
-        $refresh_token = $token;
-        $refresh_token['scopes'] = 'role_refresh'; //token标识，刷新access_token
-        $refresh_token['exp'] = $time + (86400 * 30); //refresh_token过期时间,这里设置30天
-        $jsonList = [
-            'access_token'  => JWT::encode($access_token, $key),
-            'refresh_token' => JWT::encode($refresh_token, $key),
-            'token_type'    => 'bearer' //token_type：表示令牌类型，该值大小写不敏感，这里用bearer
-        ];
-        return json_encode($jsonList); //返回给客户端token信息
+        return JWT::encode($token, $key);
     }
 
     public function verification($jwt)

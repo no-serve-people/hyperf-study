@@ -40,15 +40,11 @@ class TokenMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $authorization = $request->getHeaders()["authorization"];
-        $token = "";
-        if (!empty($authorization[0])) {
-            $token = substr($authorization[0], 7); // 截取"Bearer "
-        }
-        if (empty($token)) {
+        $authorization = $request->getHeaders()["authorization"][0];
+        if (empty($authorization)) {
             throw new TokenException(-999, "token:为空或者不存在.");
         }
-        $jwt = $this->tokenService->verification($token);
+        $jwt = $this->tokenService->verification($authorization);
         // 判断返回值，确实token是否可用等
         try {
             json_decode($jwt);
