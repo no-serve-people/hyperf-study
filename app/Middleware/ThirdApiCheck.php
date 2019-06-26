@@ -29,10 +29,14 @@ class ThirdApiCheck implements MiddlewareInterface
     {
         $param = $request->getServerParams();
 //        var_dump($param);
-        if (!in_array($param['remote_addr'], $this->whiteList)) {
-            if (!isset($param['time']) || !isset($param['token']) || $param['token'] != md5('chachadian' . $param['time'])) {
-                var_dump("hello");
+        try {
+            if (in_array($param['remote_addr'], $this->whiteList)) {
+                if (!isset($param['time']) || !isset($param['token']) || $param['token'] != md5('chachadian' . $param['time'])) {
+                    throw new \LogicException('调用参数错误');
+                }
             }
+        } catch (\Throwable $throwable) {
+            var_dump($throwable->getMessage());
         }
         return $handler->handle($request);
     }
