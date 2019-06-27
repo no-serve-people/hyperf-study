@@ -81,15 +81,6 @@ class TestController extends Controller
     }
 
     /**
-     * @GetMapping("dbTest")
-     */
-    public function dbTest()
-    {
-        $data = User::query()->where('id', 1)->first();
-        return json_encode($data);
-    }
-
-    /**
      * @GetMapping("decode")
      * @Middlewares({
      *  @Middleware(TokenMiddleware::class)
@@ -102,5 +93,14 @@ class TestController extends Controller
             "code"    => 200,
             "headers" => $headers
         ]);
+    }
+
+    /**
+     * @GetMapping("dbTest")
+     */
+    public function dbTest()
+    {
+        $data = User::query()->where('id', 1)->first();
+        return json_encode($data);
     }
 }
