@@ -22,7 +22,7 @@ use Hyperf\HttpServer\Annotation\Middlewares;
 use App\Middleware\TokenMiddleware;
 
 /**
- * Class IndexController
+ * Class TestController
  *
  * @\Hyperf\HttpServer\Annotation\Controller(prefix="t")
  * @package App\Controller
@@ -102,5 +102,27 @@ class TestController extends Controller
     {
         $data = User::query()->where('id', 1)->first();
         return json_encode($data);
+    }
+
+    /**
+     * 测试模型缓存
+     * @GetMapping("modelTest")
+     */
+    public function modelTest()
+    {
+        $data = User::findFromCache(1);
+        return json_encode($data);
+    }
+
+    /**
+     * 测试更新模型是否会删除缓存
+     * @GetMapping("delModelTest")
+     */
+    public function delModelTest()
+    {
+        $user = User::query()->find(1);
+        $user->name = '牛逼';
+        $user->save();
+        return json_encode('哈哈哈');
     }
 }

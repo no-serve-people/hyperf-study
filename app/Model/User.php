@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Model;
 
 
+use Hyperf\ModelCache\Cacheable;
+use Hyperf\ModelCache\CacheableInterface;
+
 /**
  * @property $id
  * @property $name
@@ -12,8 +15,9 @@ namespace App\Model;
  * @property $created_at
  * @property $updated_at
  */
-class User extends Model
+class User extends Model implements CacheableInterface
 {
+    use Cacheable;
     /**
      * The table associated with the model.
      *
@@ -21,6 +25,8 @@ class User extends Model
      */
     protected $table = 'user';
 
+    // 关闭时间戳
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
