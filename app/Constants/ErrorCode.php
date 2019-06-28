@@ -24,4 +24,8 @@ class ErrorCode extends AbstractConstants
      * @Message("Server Error！")
      */
     const SERVER_ERROR = 500;
+    /**
+     * @Message("USER NOT EXIST！")
+     */
+    const USER_NOT_EXIST = 404;
 }
