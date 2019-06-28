@@ -41,7 +41,7 @@
         "hyperf/constants": "~1.0.0",
         "hyperf/async-queue": "~1.0.0",
         "hyperf/amqp": "~1.0.0",
-        "hyperf/model-cache": "~1.0.0",
+        "hyperf/model-cache": "dev-master",
         "hyperf/elasticsearch": "~1.0.0",
         "hyperf/tracer": "~1.0.0",
         "firebase/php-jwt": "^5.0",
