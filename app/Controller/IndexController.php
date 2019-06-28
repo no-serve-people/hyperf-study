@@ -48,7 +48,8 @@ class IndexController extends Controller
             ];
             if (!$validate->check($data)) {
                 var_dump($validate->getError());
-                return $validate->getError();
+//                return $validate->getError();
+                return '断言';
             }
         } catch (\Throwable $e) {
             var_dump(111);
