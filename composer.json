@@ -45,7 +45,11 @@
         "hyperf/elasticsearch": "~1.0.0",
         "hyperf/tracer": "~1.0.0",
         "firebase/php-jwt": "^5.0",
-        "topthink/think-validate": "v1.0.2"
+        "topthink/think-validate": "v1.0.2",
+        "hyperf/json-rpc": "^1.0",
+        "hyperf/rpc-client": "^1.0",
+        "hyperf/rpc-server": "^1.0",
+        "hyperf/consul": "^1.0"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",
