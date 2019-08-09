@@ -12,6 +12,6 @@ declare(strict_types=1);
 
 return [
     'dependencies' => [
-        App\JsonRpc\CaculatorServiceInterface::class => App\JsonRpc\CaculatorService::class,
+        App\JsonRpc\CalculatorServiceInterface::class => App\JsonRpc\CalculatorServiceConsumer::class,
     ],
 ];
